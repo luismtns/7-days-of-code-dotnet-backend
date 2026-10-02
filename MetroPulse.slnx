@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MetroPulse.Api/MetroPulse.Api.csproj" />
+    <Project Path="src/MetroPulse.Application/MetroPulse.Application.csproj" />
+    <Project Path="src/MetroPulse.Cli/MetroPulse.Cli.csproj" />
+    <Project Path="src/MetroPulse.Infrastructure/MetroPulse.Infrastructure.csproj" />
+    <Project Path="src/MetroPulse.WarehouseSimulator/MetroPulse.WarehouseSimulator.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MetroPulse.Tests/MetroPulse.Tests.csproj" />
+  </Folder>
+</Solution>
