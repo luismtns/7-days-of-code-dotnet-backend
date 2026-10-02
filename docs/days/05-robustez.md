@@ -6,6 +6,18 @@
 
 Autenticação identifica quem chama; autorização decide o que essa identidade pode ler. Um JWT deve ser validado, não apenas decodificado. Cache precisa de chave que represente todos os filtros e o escopo do usuário; TTL limita a idade da resposta. Retry só faz sentido para falhas transitórias e operações seguras; timeout e circuit breaker limitam impacto de uma dependência instável.
 
+### Antes de praticar
+
+- [Autenticação JWT Bearer](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-10.0): validação de token e proteção de rotas.
+- [Cache distribuído](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-10.0): uso de `IDistributedCache` e expiração.
+- [Resiliência no .NET](https://learn.microsoft.com/en-us/dotnet/core/resilience/): timeout, retry e circuit breaker para dependências externas.
+
+Exemplo independente: a chave de cache precisa identificar tanto o filtro quanto o chamador. Assim, uma resposta privada não é reutilizada por outra pessoa.
+
+```csharp
+var cacheKey = $"catalog:{category}:{userId}";
+```
+
 Para começar, instale Docker e execute `docker compose -f compose.infrastructure.yaml up -d` na raiz (veja a [configuração](../ambiente.md)). Use valores de desenvolvimento inventados para emissor/audiência/chave de teste e mantenha a chave fora do Git.
 
 ## Desafio

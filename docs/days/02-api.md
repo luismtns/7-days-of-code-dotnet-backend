@@ -6,6 +6,23 @@
 
 Uma Minimal API associa método e rota a um delegate. `Results.Ok`, `Results.BadRequest` e `Results.NotFound` representam respostas HTTP; DTOs definem o JSON público. `WebApplicationBuilder` concentra configuração e injeção de dependências. Se conhece Express/Fastify, compare middleware e roteamento, mas observe o binding tipado e o ciclo de vida de serviços no .NET.
 
+### Antes de praticar
+
+- [Minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0): rotas, binding e resultados HTTP.
+- [Injeção de dependência](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection): registro e resolução de serviços.
+- [OpenAPI em ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/overview?view=aspnetcore-10.0): contrato navegável da API.
+
+Exemplo independente: a rota valida uma entrada antes de escolher uma resposta HTTP. O DTO delimita o JSON público, em vez de expor o objeto interno.
+
+```csharp
+app.MapGet("/greetings/{name}", (string name) =>
+    string.IsNullOrWhiteSpace(name)
+        ? Results.BadRequest(new { error = "Name is required." })
+        : Results.Ok(new Greeting(name)));
+
+public record Greeting(string Name);
+```
+
 Aquecimento: execute a API, faça `curl -i http://localhost:5080/health/live` e explique status, cabeçalhos e corpo. Identifique onde `ASPNETCORE_URLS` e `appsettings.json` entram na configuração.
 
 ## Desafio

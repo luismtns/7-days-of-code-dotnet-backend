@@ -6,6 +6,14 @@
 
 Organize dependências em uma direção: API conhece aplicação e infraestrutura; infraestrutura implementa contratos da aplicação; aplicação não conhece detalhes HTTP nem cliente externo. CQRS aqui significa separar o modelo de leitura e sua orquestração, sem exigir uma biblioteca de mediator ou um modelo de escrita. DTOs protegem o contrato público.
 
+### Antes de praticar
+
+- [Arquiteturas comuns de aplicações web](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures): responsabilidades e direção de dependências.
+- [Interfaces](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/interfaces): contratos que separam quem pede um dado de quem o obtém.
+- [Injeção de dependência](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection): composição das implementações na borda da aplicação.
+
+Exemplo independente de fluxo: `Endpoint -> Handler -> IBookCatalog -> HttpBookCatalog`. O handler conhece apenas `IBookCatalog`; o adaptador HTTP conhece os detalhes da chamada externa. Isso permite trocar o adaptador por uma implementação falsa durante um teste.
+
 Revise `interface`, `record`, genéricos e DI. Trace uma requisição existente da entrada HTTP até o resultado; desenhe esse caminho em `progress/`.
 
 ## Desafio

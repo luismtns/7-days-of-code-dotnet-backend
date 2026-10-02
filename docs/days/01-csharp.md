@@ -6,6 +6,24 @@
 
 Em C#, `record` modela dados com igualdade por valor; `IEnumerable<T>` representa uma sequência; nulidade é explícita quando `Nullable` está ativo. Compare `map/filter/reduce` do JavaScript com `Select/Where/Aggregate` ou `Sum` do LINQ, observando que uma sequência LINQ pode ser avaliada apenas quando enumerada. Revise `int`, `string`, `DateTimeOffset`, métodos, exceções e `using`.
 
+### Antes de praticar
+
+- [Coleções e `foreach`](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/statements/iteration): percorra itens sem controlar índices.
+- [Tipos `record`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record): propriedades posicionais e igualdade por valor.
+- [LINQ em C#](https://learn.microsoft.com/en-us/dotnet/csharp/linq/): operações de seleção, filtro e agregação sobre sequências.
+
+Exemplo independente: um acumulador começa em `0`, recebe cada valor do `foreach` e preserva `0` quando a coleção está vazia.
+
+```csharp
+var chapterPages = new[] { 12, 18, 9 };
+var totalPages = 0;
+
+foreach (var pages in chapterPages)
+{
+    totalPages += pages;
+}
+```
+
 Aquecimento da rota Fundamentos: crie uma lista de três `Trip`, percorra-a com `foreach` e imprima `StationId` e `PassengerCount`. Depois explique o resultado para uma lista vazia e para uma contagem negativa.
 
 ## Desafio

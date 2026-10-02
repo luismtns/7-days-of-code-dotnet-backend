@@ -6,6 +6,19 @@
 
 O simulador em `MetroPulse.WarehouseSimulator` representa uma dependência externa e responde a `POST /queries` com `{ "name": "station-demand", "district": null }`. Ele contém apenas dados inventados. SQL usa parâmetros para separar valores de instruções. `HttpClientFactory` gerencia clientes e conexões; `CancellationToken` deve atravessar a chamada.
 
+### Antes de praticar
+
+- [IHttpClientFactory](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory): clientes nomeados ou tipados e gerenciamento de conexões.
+- [Cancelamento](https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads): como uma solicitação interrompe trabalho em andamento.
+- [Parâmetros e injeção de SQL](https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver17): valores não devem ser concatenados à instrução.
+
+Exemplo independente: o texto SQL define a estrutura da consulta; o valor é fornecido separadamente por um parâmetro. Para chamadas HTTP, passe o mesmo token recebido para que o cancelamento possa atravessar as camadas.
+
+```csharp
+const string sql = "SELECT title FROM books WHERE category = @category";
+var response = await client.GetAsync("status", cancellationToken);
+```
+
 Execute `dotnet run --project src/MetroPulse.WarehouseSimulator` e envie uma requisição com `curl`. Observe a resposta para um distrito conhecido, um sem dados e um nome de consulta desconhecido.
 
 ## Desafio

@@ -6,6 +6,15 @@
 
 Uma equipe de mobilidade quer consultar demanda por distrito e indicadores agregados sem expor dados de usuários. O cliente precisa de uma API previsível; a equipe de operação precisa diagnosticar falhas e implantar o serviço. Toda informação neste exercício é sintética.
 
+## Antes de praticar
+
+- [Criar contêineres .NET](https://learn.microsoft.com/en-us/dotnet/core/docker/build-container): imagens multi-stage e execução de aplicações .NET em contêiner.
+- [Configuração no .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration): arquivos públicos, variáveis de ambiente e separadores `__`.
+- [GitHub Actions para .NET](https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-net): build e testes automatizados no CI.
+- [OpenAPI em ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/overview?view=aspnetcore-10.0): documentação da interface que será demonstrada.
+
+Exemplo independente de entrega: uma demonstração útil prova quatro comportamentos observáveis, como uma solicitação bem-sucedida, uma entrada rejeitada, uma solicitação sem permissão e uma falha externa tratada. Isso documenta o comportamento do serviço, não detalhes da sua implementação.
+
 ## Desafio
 
 1. Feche as rotas, DTOs, validações e exemplos OpenAPI dos Dias 2–5. O endpoint de indicadores deve preservar o mesmo contrato em cache hit, cache miss e resposta vazia.

@@ -6,6 +6,23 @@
 
 Teste unitário isola uma regra; teste HTTP verifica binding e respostas; teste de integração verifica componentes reais; teste de arquitetura impede referências indevidas. Um teste não deve simplesmente reproduzir o código que testa. Logs estruturados, métricas e traces respondem perguntas diferentes sobre uma falha.
 
+### Antes de praticar
+
+- [Testes unitários com xUnit](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-xunit): estrutura de testes e asserções.
+- [Testes de integração em ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0): `WebApplicationFactory` e cliente HTTP de teste.
+- [Health checks](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-10.0), [logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging) e [OpenTelemetry](https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel): sinais complementares de operação.
+- [Visão geral do Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview): orquestração local de recursos.
+
+Exemplo independente: um teste nomeia o comportamento esperado e verifica o resultado observável, sem depender de rede ou banco de dados.
+
+```csharp
+[Fact]
+public void Add_ReturnsTheCombinedValue()
+{
+    (2 + 3).ShouldBe(5);
+}
+```
+
 O projeto já mostra xUnit, Shouldly e `WebApplicationFactory`. Use NSubstitute para uma porta da aplicação, não para simular toda a aplicação.
 
 ## Desafio
